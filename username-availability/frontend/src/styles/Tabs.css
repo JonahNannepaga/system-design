@@ -1,0 +1,58 @@
+/* Tab Navigation Styles */
+.tab-navigation {
+  display: flex;
+  gap: 2px;
+  margin-bottom: 20px;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid #dee2e6;
+}
+
+.tab-button {
+  flex: 1;
+  padding: 12px 20px;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  font-family: inherit;
+  transition: all 0.2s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.tab-button--active {
+  background-color: #007bff;
+  color: white;
+  font-weight: bold;
+}
+
+.tab-button--inactive {
+  background-color: #f8f9fa;
+  color: #495057;
+  font-weight: normal;
+}
+
+.tab-button:hover:not(.tab-button--active) {
+  background-color: #e9ecef;
+}
+
+/* Hover effect animation */
+.tab-button::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.2),
+    transparent
+  );
+  transition: left 0.5s;
+}
+
+.tab-button:hover::before {
+  left: 100%;
+}

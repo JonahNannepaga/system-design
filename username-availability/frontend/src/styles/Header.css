@@ -1,0 +1,22 @@
+/* Header Styles */
+.app-header {
+  text-align: center;
+  margin-bottom: 30px;
+  padding: 20px;
+}
+
+.app-title {
+  color: #333;
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.app-subtitle {
+  color: #666;
+  font-size: 1.1rem;
+  margin: 0;
+  font-weight: 400;
+  line-height: 1.6;
+}

@@ -1,0 +1,9 @@
+/* Main CSS imports for the application */
+@import "./App.css";
+@import "./Layout.css";
+@import "./Header.css";
+@import "./Tabs.css";
+@import "./Footer.css";
+@import "./UsernameChecker.css";
+@import "./Messages.css";
+@import "./Suggestions.css";

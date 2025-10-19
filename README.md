@@ -4,4 +4,3 @@
 2. Spotify - Music Streaming App
 3. File upload mechanism
 4. JWT authentication
-5.

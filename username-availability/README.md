@@ -235,3 +235,109 @@ The hybrid approach combining Bloom Filters, Redis, and a persistent database pr
 - **Reliability**: High availability with proper monitoring
 
 This architecture ensures a smooth user experience while maintaining system reliability and performance at scale.
+
+---
+
+## Available Backend APIs
+
+### 1. Check Health
+
+```bash
+# Health Check
+curl http://localhost:3001/health
+```
+
+### 2. Check Username Availability
+
+```bash
+# Check if username is available
+curl http://localhost:3001/check/testuser
+```
+
+### 3. Register Username
+
+```bash
+# Register a new username
+curl -X POST http://localhost:3001/register \
+  -H "Content-Type: application/json" \
+  -d '{"username": "testuser", "userId": "123"}'
+```
+
+### 4. Get Username Suggestions
+
+```bash
+# Get suggestions for unavailable usernames
+curl http://localhost:3001/suggest/testuser
+```
+
+### 5. Get Suggestions with Custom Count
+
+```bash
+# Get specific number of suggestions
+curl "http://localhost:3001/suggest/user?count=3"
+curl "http://localhost:3001/suggest/admin?count=5"
+```
+
+## API Testing Script
+
+For comprehensive testing, you can use this complete script:
+
+```bash
+#!/bin/bash
+
+# 1. Check health
+echo "=== Health Check ==="
+curl http://localhost:3001/health
+echo -e "\n"
+
+# 2. Check availability before registration
+echo "=== Check availability (should be available) ==="
+curl http://localhost:3001/check/testuser
+echo -e "\n"
+
+# 3. Register the username
+echo "=== Register username ==="
+curl -X POST http://localhost:3001/register \
+  -H "Content-Type: application/json" \
+  -d '{"username": "testuser", "userId": "123"}'
+echo -e "\n"
+
+# 4. Check availability after registration (should be taken)
+echo "=== Check availability (should be taken) ==="
+curl http://localhost:3001/check/testuser
+echo -e "\n"
+
+# 5. Try to register duplicate (should fail)
+echo "=== Try duplicate registration ==="
+curl -X POST http://localhost:3001/register \
+  -H "Content-Type: application/json" \
+  -d '{"username": "testuser", "userId": "test-456"}'
+echo -e "\n"
+
+# 6. Get suggestions for taken username
+echo "=== Get suggestions ==="
+curl http://localhost:3001/suggest/testuser
+echo -e "\n"
+
+# 7. Register a few more users for testing
+echo "=== Register more users ==="
+curl -X POST http://localhost:3001/register \
+  -H "Content-Type: application/json" \
+  -d '{"username": "alice", "userId": "alice-001"}'
+
+curl -X POST http://localhost:3001/register \
+  -H "Content-Type: application/json" \
+  -d '{"username": "bob", "userId": "bob-002"}'
+
+curl -X POST http://localhost:3001/register \
+  -H "Content-Type: application/json" \
+  -d '{"username": "charlie", "userId": "charlie-003"}'
+echo -e "\n"
+
+# 8. Test suggestions with different counts
+echo "=== Test suggestions with different counts ==="
+curl "http://localhost:3001/suggest/user?count=3"
+echo -e "\n"
+curl "http://localhost:3001/suggest/admin?count=5"
+echo -e "\n"
+```

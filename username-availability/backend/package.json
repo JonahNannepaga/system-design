@@ -1,0 +1,36 @@
+{
+  "name": "username-availability-system",
+  "version": "1.0.0",
+  "description": "A scalable system to check username availability.",
+  "private": true,
+  "scripts": {
+    "start": "docker-compose up",
+    "dev": "pnpm --recursive dev",
+    "dev:docker": "docker-compose up -d",
+    "dev:local": "pnpm dev:infrastructure && pnpm --recursive dev",
+    "dev:infrastructure": "docker-compose up -d postgres redis && sleep 3",
+    "build": "pnpm --recursive build && docker-compose build",
+    "build:services": "pnpm --recursive --filter './services/*' build",
+    "test": "pnpm --recursive test",
+    "test:integration": "pnpm --filter './tests/*' test",
+    "seed": "docker-compose run data-seeder",
+    "clean": "pnpm --recursive exec rm -rf dist node_modules",
+    "install:all": "pnpm install",
+    "docker:up": "docker-compose up -d",
+    "docker:down": "docker-compose down",
+    "docker:logs": "docker-compose logs -f"
+  },
+  "devDependencies": {
+    "typescript": "^5.2.2",
+    "ts-node": "^10.9.1",
+    "nodemon": "^3.0.1",
+    "@types/node": "^20.8.0"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "pnpm": ">=8.0.0"
+  },
+  "packageManager": "pnpm@8.10.0",
+  "author": "Your Name",
+  "license": "MIT"
+}

@@ -1,0 +1,90 @@
+version: '3.8'
+
+services:
+  api-gateway:
+    build:
+      context: ./services/api-gateway
+    ports:
+      - "3000:3000"
+    environment:
+      - PORT=3000
+      - USERNAME_SERVICE_URL=http://username-service:3001
+      - NODE_ENV=development
+    depends_on:
+      - username-service
+    networks:
+      - username-network
+
+  username-service:
+    build:
+      context: ./services/username-service
+    ports:
+      - "3001:3001"
+    environment:
+      - PORT=3001
+      - DB_HOST=postgres
+      - DB_PORT=5432
+      - DB_NAME=username_db
+      - DB_USER=postgres
+      - DB_PASSWORD=password
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+      - NODE_ENV=development
+    depends_on:
+      - postgres
+      - redis
+    networks:
+      - username-network
+
+  data-seeder:
+    build:
+      context: ./services/data-seeder
+    environment:
+      - DB_HOST=postgres
+      - DB_PORT=5432
+      - DB_NAME=username_db
+      - DB_USER=postgres
+      - DB_PASSWORD=password
+    depends_on:
+      - postgres
+    networks:
+      - username-network
+
+  postgres:
+    build:
+      context: ./infrastructure/postgres
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: username_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - username-network
+
+  redis:
+    image: redis:latest
+    ports:
+      - "6379:6379"
+    networks:
+      - username-network
+
+  nginx:
+    build:
+      context: ./infrastructure/nginx
+    ports:
+      - "80:80"
+    depends_on:
+      - api-gateway
+    networks:
+      - username-network
+
+networks:
+  username-network:
+    driver: bridge
+
+volumes:
+  postgres_data:
+    driver: local

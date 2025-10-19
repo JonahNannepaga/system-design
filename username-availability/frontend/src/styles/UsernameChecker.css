@@ -1,0 +1,122 @@
+/* Username Checker Component Styles */
+
+/* Main sections */
+.username-section {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+.username-check-section {
+  background-color: #f9f9f9;
+}
+
+.username-register-section {
+  background-color: #f0f8ff;
+}
+
+.username-suggestions-section {
+  background-color: #fff8dc;
+}
+
+/* Form elements */
+.username-input-group {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.username-input {
+  flex: 1;
+  padding: 12px;
+  border: 2px solid #ddd;
+  border-radius: 6px;
+  font-size: 16px;
+  width: 100%;
+}
+
+.username-check-button {
+  padding: 12px 20px;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.username-check-button:enabled {
+  background-color: #007bff;
+}
+
+.username-check-button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.username-check-button:hover:enabled {
+  background-color: #0056b3;
+}
+
+/* Form labels */
+.form-label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+/* User ID input group */
+.userid-input-group {
+  display: flex;
+  gap: 10px;
+}
+
+.generate-button {
+  padding: 12px 20px;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.2s ease;
+}
+
+.generate-button:hover {
+  background-color: #218838;
+}
+
+/* Register button */
+.register-button {
+  padding: 12px 24px;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  width: 100%;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.register-button--enabled {
+  background-color: #007bff;
+}
+
+.register-button--disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.register-button--unavailable {
+  background-color: #6c757d;
+  cursor: not-allowed;
+}
+
+.register-button:hover.register-button--enabled {
+  background-color: #0056b3;
+}

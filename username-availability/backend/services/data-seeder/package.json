@@ -1,0 +1,26 @@
+{
+  "name": "@username-system/data-seeder",
+  "version": "1.0.0",
+  "description": "Service to seed the database with test usernames",
+  "main": "dist/seed.js",
+  "scripts": {
+    "seed": "ts-node src/seed.ts",
+    "build": "tsc",
+    "start": "node dist/seed.js",
+    "clean": "rm -rf dist"
+  },
+  "dependencies": {
+    "pg": "^8.11.3",
+    "dotenv": "^16.3.1"
+  },
+  "devDependencies": {
+    "ts-node": "^10.9.1",
+    "typescript": "^5.2.2",
+    "@types/pg": "^8.10.2",
+    "@types/node": "^20.8.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "license": "MIT"
+}
